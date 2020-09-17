@@ -51,6 +51,13 @@
 			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
+	
+	<distributionManagement>
+        <repository>
+            <id>nexus-site</id>
+            <url>http://localhost:8081/repository/maven-snapshots</url>
+        </repository>
+    </distributionManagement>
 
 	<build>
 		<plugins>

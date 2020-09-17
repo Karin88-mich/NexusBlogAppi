@@ -1,0 +1,86 @@
+<settings>
+
+	<servers>
+
+		<server>
+			<id>ossrh</id>
+			<username>olihock</username>
+			<password>7@2EhgV4!T2HuGn</password>
+		</server>
+
+		<!-- Nexus Admin --> 
+		<server>
+			<id>nexus-snapshots</id>
+			<username>admin</username>
+			<password>admin</password>
+		</server>
+		<server>
+			<id>nexus-releases</id>
+			<username>admin</username>
+			<password>admin</password>
+		</server>
+	
+	</servers>
+	
+	<pluginGroups>
+	
+		<pluginGroup>videa.services</pluginGroup>
+		<pluginGroup>org.sonarsource.scanner.maven</pluginGroup>
+		
+	</pluginGroups>
+
+
+	<profiles>
+	
+		<profile>
+			<id>ossrh</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<gpg.executable>gpg</gpg.executable>
+					<gpg.passphrase>HGDXVGZ7pffLHLPeNyXQ</gpg.passphrase>
+			</properties>
+		</profile>
+		
+		<!-- Nexus Artifactory Deployment -->
+		<profile>
+			<id>nexus</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+			<properties>
+				<altSnapshotDeploymentRepository>nexus-snapshots::default::http://localhost:8081/repository/maven-snapshots</altSnapshotDeploymentRepository>
+				<altReleaseDeploymentRepository>nexus-releases::default::http://localhost:8081/repository/maven-releases</altReleaseDeploymentRepository>
+			</properties>
+		</profile>
+ 
+		<!-- Nexus Artifactory Dependencies --> 
+		<profile>
+			<id>central</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+			<repositories>
+				<repository>
+					<id>snapshots</id>
+					<url>http://localhost:8081/repository/maven-snapshots</url>
+				</repository>
+			</repositories>
+		</profile>
+		
+		<!-- SonarQube Server -->
+        <profile>
+            <id>sonar</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <!-- Optional URL to server. Default value is http://localhost:9000 -->
+                <sonar.host.url>http://localhost:9000</sonar.host.url>
+            </properties>
+        </profile>
+		
+	</profiles>
+  
+</settings>

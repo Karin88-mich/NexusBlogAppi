@@ -19,7 +19,7 @@ public class Comment {
 		return  postId;
 	}
 	
-	public void setpostId(long postId) {
+	public void setPostId(long postId) {
 	this.postId = postId;
 	}
 
