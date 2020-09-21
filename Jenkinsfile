@@ -20,9 +20,15 @@ pipeline {
                         }
                     }
                     steps {
-                        sh 'mvn install -DskipTests'                
+                        configFileProvider(
+                        [configFile(fileId: 'karina_settings_nexus', variable: 'MAVEN_SETTINGS')]) {
+                        sh 'mvn -s $MAVEN_SETTINGS clean deploy'
+    }
+                
                     }
                 }
+
+                
             }
         }
     }
